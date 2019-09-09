@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ComponentList from './ComponentList/ComponentList';
+import ShoppingCart from './ShoppingCart/ShoppingCart'
 
 // Normalizes string as a slug - a string that is safe to use
 // in both URLs and html attributes
@@ -45,27 +46,6 @@ class App extends Component {
   };
 
   render() {
-    
-    const summary = Object.keys(this.state.selected).map((feature, idx) => {
-      const featureHash = feature + '-' + idx;
-      const selectedOption = this.state.selected[feature];
-
-      return (
-        <div className="summary__option" key={featureHash}>
-          <div className="summary__option__label">{feature} </div>
-          <div className="summary__option__value">{selectedOption.name}</div>
-          <div className="summary__option__cost">
-            {USCurrencyFormat.format(selectedOption.cost)}
-          </div>
-        </div>
-      );
-    });
-
-    const total = Object.keys(this.state.selected).reduce(
-      (acc, curr) => acc + this.state.selected[curr].cost,
-      0
-    );
-
     return (
       <div className="App">
         <header>
@@ -73,16 +53,7 @@ class App extends Component {
         </header>
         <main>
           <ComponentList features={this.props.features}/>
-          <section className="main__summary">
-            <h2>Your cart</h2>
-            {summary}
-            <div className="summary__total">
-              <div className="summary__total__label">Total</div>
-              <div className="summary__total__value">
-                {USCurrencyFormat.format(total)}
-              </div>
-            </div>
-          </section>
+          <ShoppingCart selectedFeatures={this.state.selected}/>
         </main>
       </div>
     );

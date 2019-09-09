@@ -45,7 +45,10 @@ class App extends Component {
           <h1>ELF Computing | Laptops</h1>
         </header>
         <main>
-          <ComponentList features={this.props.features}/>
+          <ComponentList 
+            features={this.props.features}
+            onChange={this.updateFeature}
+            selectedFeatures={this.state.selected}/>
           <ShoppingCart selectedFeatures={this.state.selected}/>
         </main>
       </div>

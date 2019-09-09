@@ -8,7 +8,12 @@ class ComponentList extends Component {
 
     const features = Object.keys(this.props.features).map((feature, idx) => {
       const featureHash = feature + '-' + idx;
-      return ( <ComponentType feature={this.props.features} key={featureHash}/> )
+      return ( <ComponentType 
+                  features={this.props.features} 
+                  featureName={feature} 
+                  key={featureHash}
+                  onChange={this.props.onChange}
+                  selectedFeatures={this.props.selectedFeatures}/> )
     });
 
     return (

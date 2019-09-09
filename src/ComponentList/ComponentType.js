@@ -11,7 +11,9 @@ const USCurrencyFormat = new Intl.NumberFormat('en-US', {
 class ComponentType extends Component{
 
   render() { 
-  const options = this.props.feature.map(item => {
+  const { features, featureName, selectedFeatures } = this.props;
+
+  const options = features[featureName].map(item => {
     const itemHash = slugify(JSON.stringify(item));
     return (
       <div key={itemHash} className="feature__item">
@@ -19,9 +21,10 @@ class ComponentType extends Component{
           type="radio"
           id={itemHash}
           className="feature__option"
-          name={slugify(this.props.feature)}
-          checked={1}/* {item.name === this.state.selected[feature].name} */
-          onChange={1}/* {e => this.updateFeature(feature, item)} */
+          name={slugify(featureName)}
+          checked={item.name === selectedFeatures[featureName].name}
+          onChange={e => this.props.onChange(featureName, item)
+          }
         />
         <label htmlFor={itemHash} className="feature__label">
           {item.name} ({USCurrencyFormat.format(item.cost)})
@@ -33,7 +36,7 @@ class ComponentType extends Component{
   return (
     <fieldset className="feature" key={this.props.featureHash}>
       <legend className="feature__name">
-        <h3>{this.props.feature}</h3>
+        <h3>{featureName}</h3>
       </legend>
       {options}
     </fieldset>

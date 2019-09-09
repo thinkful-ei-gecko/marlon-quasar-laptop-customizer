@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './ComponentType.css'
 import slugify from 'slugify';
 
 // This object will allow us to

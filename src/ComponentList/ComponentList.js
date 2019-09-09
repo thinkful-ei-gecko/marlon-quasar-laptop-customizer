@@ -1,6 +1,6 @@
 import React, { Component }  from 'react';
 import ComponentType from './ComponentType'
-import slugify from 'slugify';
+import './ComponentList.css'
 
 class ComponentList extends Component {
 
